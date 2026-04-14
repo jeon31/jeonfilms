@@ -12,17 +12,7 @@ body{background:#111008;color:#ccc6bb;font-family:'DM Sans',system-ui,sans-serif
 a{text-decoration:none;color:inherit;}
 button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
-/* ── INTRO ── */
-#intro{
-  position:fixed;inset:0;z-index:9999;
-  background:#111008;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.intro-letters{display:flex;font-size:clamp(3rem,10vw,8rem);font-weight:600;letter-spacing:-.03em;color:#ede7dc;}
-.il{display:inline-block;transform:translateY(110%);opacity:0;}
-.intro-wipe{position:absolute;inset:0;background:#111008;transform:translateY(0);transition:transform 1s cubic-bezier(.76,0,.24,1);}
-#intro.wipe-up .intro-wipe{transform:translateY(-100%);}
+
 
 /* ── NAV ── */
 #nav{
@@ -378,11 +368,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
 </head>
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-  <div class="intro-letters" id="iletters"></div>
-  <div class="intro-wipe" id="iwipe"></div>
-</div>
+
 
 <!-- DIM + DRAWER -->
 <div class="dim" id="dim" onclick="closeDrawer()"></div>
@@ -584,34 +570,25 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
 </footer>
 
 <script>
-/* ── INTRO: letters stagger in, then wipe up ── */
-(function(){
-  const word='Jeon Films';
-  const c=document.getElementById('iletters');
-  word.split('').forEach((ch,i)=>{
-    const s=document.createElement('span');
-    s.className='il';
-    s.textContent=ch===' '?'\u00a0':ch;
-    s.style.transitionDelay=(i*60)+'ms';
-    s.style.transition='transform 0.75s cubic-bezier(.16,1,.3,1), opacity 0.5s ease';
-    c.appendChild(s);
-  });
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    document.querySelectorAll('.il').forEach(el=>{el.style.transform='translateY(0)';el.style.opacity='1';});
-  }));
-  setTimeout(()=>{
-    document.getElementById('iwipe').style.transform='translateY(-100%)';
-    setTimeout(()=>{
-      const intro=document.getElementById('intro');
-      intro.style.transition='opacity .6s ease';
-      intro.style.opacity='0';
-      setTimeout(()=>{intro.style.display='none';},600);
-      ['he','ht','hg'].forEach((id,i)=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('in');},i*160));
-      setTimeout(()=>{const hb=document.getElementById('hb');if(hb)hb.classList.add('in');},500);
-      setTimeout(()=>{const hs=document.getElementById('hs');if(hs)hs.classList.add('in');},780);
-    },900);
-  },1500);
-})();
+/* ── HERO FADE IN ── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    ['he','ht','hg'].forEach((id,i) => {
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add('in');
+      }, i * 200);
+    });
+    setTimeout(() => {
+      const hb = document.getElementById('hb');
+      if(hb) hb.classList.add('in');
+    }, 650);
+    setTimeout(() => {
+      const hs = document.getElementById('hs');
+      if(hs) hs.classList.add('in');
+    }, 900);
+  }, 100);
+});
 
 /* ── NAV: stuck + active highlight ── */
 const nav=document.getElementById('nav');
