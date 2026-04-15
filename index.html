@@ -211,6 +211,8 @@ section:not(#hero):not(#showreel){padding:6.5rem 4vw 5.5rem;}
 .wi-name{font-size:.95rem;font-weight:300;color:#ede7dc;line-height:1.2;}
 .wi-soon .wi-label{opacity:1;transform:none;}
 .wi-soon .wi-name{color:rgba(204,198,187,.2);}
+.wi-role{font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(196,168,102,.6);margin-top:.3rem;display:flex;align-items:center;gap:.4rem;}
+.wi-role::before{content:'';width:12px;height:1px;background:rgba(196,168,102,.5);}
 
 /* ── SERVICES ── */
 #services{background:rgba(255,255,255,.02);border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);}
@@ -364,6 +366,46 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
   .f-socials{gap:.4rem;}
   .f-copy{font-size:.48rem;}
 }
+
+/* ── LIGHTBOX ── */
+#lightbox{
+  display:none;
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;
+  flex-direction:column;
+}
+#lightbox.open{display:flex;}
+#lightbox-inner{
+  position:relative;
+  width:90vw;max-width:1000px;
+  aspect-ratio:16/9;
+  background:#000;
+}
+#lightbox-inner iframe{
+  position:absolute;inset:0;
+  width:100%;height:100%;border:none;
+}
+#lightbox-close{
+  position:absolute;top:-44px;right:0;
+  font-size:1.4rem;color:rgba(204,198,187,.6);
+  background:none;border:none;cursor:pointer;
+  transition:color .3s;line-height:1;
+  font-family:'DM Sans',sans-serif;
+}
+#lightbox-close:hover{color:#ede7dc;}
+/* drive items show external icon */
+.wi-ext .wi-play-circle::after{
+  content:'↗';font-size:.7rem;
+  position:absolute;top:-6px;right:-6px;
+  background:rgba(196,168,102,.8);
+  color:#111;border-radius:50%;
+  width:16px;height:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;
+}
 </style>
 </head>
 <body>
@@ -437,7 +479,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
 <section id="works">
   <div class="sec-wrap">
     <p class="sec-eye sr">Works</p>
-    <h2 class="sec-title sr sr-d1">What we've <em>made</em></h2>
+    <h2 class="sec-title sr sr-d1">What we've <em>worked on</em></h2>
     <div class="work-tabs sr sr-d2">
       <button class="wtab on" onclick="showTab('short',this)">Short Films</button>
       <button class="wtab" onclick="showTab('commercial',this)">Commercials</button>
@@ -446,34 +488,34 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
     </div>
     <!-- SHORT FILMS -->
     <div class="wpanel on sr sr-d3" id="tab-short">
-      <a href="https://youtu.be/emtudtfjfKs?si=awoNn7_1uXTatZFg" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/emtudtfjfKs/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 1</p></div></a>
-      <a href="https://youtu.be/ye6UMEdWBYE" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ye6UMEdWBYE/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 2</p></div></a>
-      <a href="https://drive.google.com/file/d/1r0vSNZOVgxewEWuK4HhO8P7XwF7AZQQD/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 3</p></div></a>
-      <a href="https://youtu.be/ZhDrLHuUpyU" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ZhDrLHuUpyU/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 4</p></div></a>
+      <div class="wi" onclick="openLightbox('emtudtfjfKs')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/emtudtfjfKs/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Unpredictable</p><p class="wi-role">Editor · Colorist</p></div></div>
+      <div class="wi" onclick="openLightbox('ye6UMEdWBYE')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ye6UMEdWBYE/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 2</p><p class="wi-role">Editor · Colorist</p></div></div>
+      <a href="https://drive.google.com/file/d/1r0vSNZOVgxewEWuK4HhO8P7XwF7AZQQD/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 3</p><p class="wi-role">Editor</p></div></a>
+      <div class="wi" onclick="openLightbox('ZhDrLHuUpyU')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ZhDrLHuUpyU/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Short Film 4</p><p class="wi-role">Editor</p></div></div>
       <div class="wi wi-soon" style="cursor:default;"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1" stroke-dasharray="4,3"/></svg></div><div class="wi-label"><p class="wi-cat">Short Film</p><p class="wi-name">Coming Soon</p></div></div>
     </div>
     <!-- COMMERCIALS -->
     <div class="wpanel" id="tab-commercial">
-      <a href="https://youtu.be/NuOTT9hKo8s?si=XXF2iN1NqlEScLwb" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/NuOTT9hKo8s/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 1</p></div></a>
-      <a href="https://youtu.be/SBv5ILH6si0?si=ZDtqn5JJJ-QP335J" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/SBv5ILH6si0/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 2</p></div></a>
-      <a href="https://youtu.be/zDICkE79LCc?si=Htpe_meoYy1iqWla" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/zDICkE79LCc/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 3</p></div></a>
-      <a href="https://youtu.be/ziWev6XgmD4?si=aEMYzpHnk4W5nZC7" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ziWev6XgmD4/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 4</p></div></a>
-      <a href="https://youtu.be/jpD9mbgoKbY" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/jpD9mbgoKbY/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 5</p></div></a>
-      <a href="https://drive.google.com/file/d/187LSSZKXCUUjX90lgBffMKxC5q8LSCyD/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 6</p></div></a>
+      <div class="wi" onclick="openLightbox('NuOTT9hKo8s')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/NuOTT9hKo8s/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 1</p><p class="wi-role">Editor · VFX</p></div></div>
+      <div class="wi" onclick="openLightbox('SBv5ILH6si0')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/SBv5ILH6si0/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 2</p><p class="wi-role">Editor</p></div></div>
+      <div class="wi" onclick="openLightbox('zDICkE79LCc')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/zDICkE79LCc/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 3</p><p class="wi-role">Editor</p></div></div>
+      <div class="wi" onclick="openLightbox('ziWev6XgmD4')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ziWev6XgmD4/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 4</p><p class="wi-role">Editor</p></div></div>
+      <div class="wi" onclick="openLightbox('jpD9mbgoKbY')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/jpD9mbgoKbY/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 5</p><p class="wi-role">Editor</p></div></div>
+      <a href="https://drive.google.com/file/d/187LSSZKXCUUjX90lgBffMKxC5q8LSCyD/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Commercial</p><p class="wi-name">Commercial 6</p><p class="wi-role">Editor</p></div></a>
     </div>
     <!-- CLIENT WORKS -->
     <div class="wpanel" id="tab-client">
-      <a href="https://youtu.be/cgK5VyOITF8" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/cgK5VyOITF8/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 1</p></div></a>
-      <a href="https://youtu.be/q1Uo1DjZ5rw" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/q1Uo1DjZ5rw/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 2</p></div></a>
-      <a href="https://drive.google.com/file/d/1zbRWbWAmqkjVeummngZmwTr76wXeGfAt/view?usp=sharing" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 3</p></div></a>
-      <a href="https://drive.google.com/file/d/1v9YjZdsFuGT7n_sZ6XK3-btc8d-O4JGL/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 4</p></div></a>
+      <div class="wi" onclick="openLightbox('cgK5VyOITF8')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/cgK5VyOITF8/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 1</p><p class="wi-role">Editor · Cinematographer</p></div></div>
+      <div class="wi" onclick="openLightbox('q1Uo1DjZ5rw')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/q1Uo1DjZ5rw/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 2</p><p class="wi-role">Editor</p></div></div>
+      <a href="https://drive.google.com/file/d/1zbRWbWAmqkjVeummngZmwTr76wXeGfAt/view?usp=sharing" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 3</p><p class="wi-role">Editor</p></div></a>
+      <a href="https://drive.google.com/file/d/1v9YjZdsFuGT7n_sZ6XK3-btc8d-O4JGL/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Client Work</p><p class="wi-name">Client Work 4</p><p class="wi-role">Editor</p></div></a>
     </div>
     <!-- PERSONAL -->
     <div class="wpanel" id="tab-personal">
-      <a href="https://youtu.be/0wbYxlnlA2E" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/0wbYxlnlA2E/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Introduction</p><p class="wi-name">Introduction 1</p></div></a>
-      <a href="https://drive.google.com/file/d/1tRktgm1fdYNxtTqJMPdr1_5dEI81Q3Y6/view?usp=sharing" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Introduction</p><p class="wi-name">Introduction 2</p></div></a>
-      <a href="https://youtu.be/su4ysRPDBK4" target="_blank" rel="noopener" class="wi"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/su4ysRPDBK4/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Assignment</p><p class="wi-name">In and Out</p></div></a>
-      <a href="https://drive.google.com/file/d/1dVAFMEeCZD6Qe7JVJ7trlCCM7Z1ogvM2/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Final Assignment</p><p class="wi-name">Final Project</p></div></a>
+      <div class="wi" onclick="openLightbox('0wbYxlnlA2E')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/0wbYxlnlA2E/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Introduction Assignment</p><p class="wi-name">Introduction 1</p><p class="wi-role">Director · Editor · Shooter</p></div></div>
+      <a href="https://drive.google.com/file/d/1tRktgm1fdYNxtTqJMPdr1_5dEI81Q3Y6/view?usp=sharing" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Introduction Assignment</p><p class="wi-name">Introduction 2</p><p class="wi-role">Director · Editor · Shooter</p></div></a>
+      <div class="wi" onclick="openLightbox('su4ysRPDBK4')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/su4ysRPDBK4/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Assignment</p><p class="wi-name">In and Out</p><p class="wi-role">Director · Editor · Shooter</p></div></div>
+      <a href="https://drive.google.com/file/d/1dVAFMEeCZD6Qe7JVJ7trlCCM7Z1ogvM2/view?usp=drive_link" target="_blank" rel="noopener" class="wi"><div class="wi-fallback"><svg width="44" height="36" viewBox="0 0 44 36" fill="none"><rect x="1" y="1" width="42" height="34" rx="2" stroke="#ccc6bb" stroke-width="1"/><polygon points="15,9 31,18 15,27" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-cat">Final Assignment</p><p class="wi-name">Final Project</p><p class="wi-role">Director · Editor · Shooter</p></div></a>
     </div>
   </div>
 </section>
@@ -500,13 +542,13 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
     <div class="about-layout">
       <div class="about-img sr sr-d1">
         <!-- ADD PORTRAIT: replace this div contents with <img src="portrait.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"> -->
-      <img src="about.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;display:block;">
+        <div class="about-ph"><svg width="42" height="52" viewBox="0 0 42 52" fill="none"><circle cx="21" cy="14" r="10" stroke="#ccc6bb" stroke-width="1"/><path d="M3 50 C3 36 39 36 39 50" stroke="#ccc6bb" stroke-width="1" fill="none"/></svg><p>Add portrait here</p></div>
       </div>
       <div class="sr sr-d2">
         <div class="about-copy">
           <p class="lead">We believe every frame is a chance to say something true.</p>
           <p>Jeon Films is a creative studio founded by Jivan — originally from Nepal, now based in Utah, United States. With over five years of hands-on experience across the full spectrum of visual production, we bring craft, intention, and a cross-cultural perspective to every project.</p>
-          <p>We work across video editing, cinematography, animation, and visual effects, short films, branded content, commercial work, and client productions. Our process is focused: we find the story, then build everything around it.</p>
+          <p>We work across video editing, cinematography, animation, and visual effects — short films, branded content, commercial work, and client productions. Our process is focused: we find the story, then build everything around it.</p>
           <p>Whether shaping raw footage or building from nothing, we give it everything we have.</p>
         </div>
         <div class="about-stats">
@@ -814,6 +856,35 @@ document.getElementById('contactForm').addEventListener('submit',async function(
   draw();
 })();
 
+
+/* ── LIGHTBOX ── */
+function openLightbox(videoId){
+  const lb = document.getElementById('lightbox');
+  const iframe = document.getElementById('lightbox-iframe');
+  iframe.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  const lb = document.getElementById('lightbox');
+  const iframe = document.getElementById('lightbox-iframe');
+  lb.classList.remove('open');
+  iframe.src = '';
+  document.body.style.overflow = '';
+}
+function closeLB(e){
+  if(e.target === document.getElementById('lightbox')) closeLightbox();
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+
 </script>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLB(event)">
+  <div id="lightbox-inner">
+    <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+    <iframe id="lightbox-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
 </body>
 </html>
