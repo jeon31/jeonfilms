@@ -434,6 +434,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
     <li><a href="#services">Services</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#" onclick="openPortfolio();return false;" style="color:rgba(196,168,102,.6);">Film 3500</a></li>
   </ul>
   <button class="nav-ham" onclick="openDrawer()"><span></span><span></span><span></span></button>
 </nav>
@@ -596,6 +597,8 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
   </div>
 </section>
 
+
+
 <footer>
   <div class="f-logo">
     <a href="#hero" style="display:flex;align-items:center;gap:.8rem;text-decoration:none;">
@@ -611,6 +614,8 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
     <a href="https://www.linkedin.com/in/jivan-chaudhary-b757512b5/" target="_blank" rel="noopener" class="f-soc s-li" title="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7.5v.5M12 17v-3.5a2 2 0 014 0V17M12 10v7"/></svg></a>
   </div>
 </footer>
+<!-- FILM 3500 assignment link - remove when done -->
+<a href="film3500.html" style="position:fixed;bottom:1rem;right:1rem;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(196,168,102,.4);text-decoration:none;z-index:500;padding:.4rem .8rem;border:1px solid rgba(196,168,102,.2);border-radius:4px;background:rgba(17,16,8,.8);">FILM 3500</a>
 
 <script>
 /* ── HERO FADE IN ── */
@@ -893,5 +898,119 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox
     <button id="lightbox-close" onclick="closeLightbox()">✕ Close</button>
   </div>
 </div>
+
+<!-- ═══ FILM 3500 MODAL ═══ -->
+<div id="film3500-modal" style="display:none;position:fixed;inset:0;z-index:9500;background:#f5f1e8;overflow-y:auto;">
+  <!-- Close button -->
+  <button onclick="closePortfolio()" style="position:fixed;top:1.2rem;right:1.5rem;z-index:9600;background:rgba(26,26,26,.08);border:1px solid rgba(26,26,26,.15);border-radius:50%;width:42px;height:42px;cursor:pointer;font-size:1.1rem;color:#1a1a1a;display:flex;align-items:center;justify-content:center;font-family:sans-serif;">✕</button>
+
+  <div style="max-width:720px;margin:0 auto;padding:5rem 4vw 6rem;font-family:'Georgia',serif;color:#1a1a1a;">
+
+    <!-- Header -->
+    <div style="border-bottom:1px solid #1a1a1a;padding-bottom:2rem;margin-bottom:4rem;">
+      <div style="display:flex;justify-content:space-between;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#6b6258;margin-bottom:2rem;font-family:'DM Sans',sans-serif;">
+        <span>Final Portfolio</span>
+        <span>FILM 3500 · Spring 2026</span>
+      </div>
+      <h1 style="font-size:clamp(2.5rem,7vw,5rem);font-weight:400;line-height:1.05;margin-bottom:1.2rem;">JIVAN <em style="font-style:normal;color:#8b1e1e;">CHAUDHARY</em>.</h1>
+      <p style="font-style:italic;font-size:1.25rem;color:#6b6258;line-height:1.45;">Film Theory Portfolio. FILM 3500, Spring 2026.</p>
+    </div>
+
+    <!-- Opener image -->
+    <figure style="margin:0 0 4rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Parasite_%282019_film%29.png/1280px-Parasite_%282019_film%29.png" alt="Parasite (2019)" loading="lazy" style="width:100%;aspect-ratio:21/9;object-fit:cover;display:block;">
+      <figcaption style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#6b6258;margin-top:.75rem;padding-left:.75rem;border-left:2px solid #8b1e1e;">Parasite (2019), directed by Bong Joon-ho</figcaption>
+    </figure>
+
+    <!-- TOC -->
+    <nav style="margin-bottom:6rem;padding:2rem 0;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;">
+      <div style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#6b6258;margin-bottom:1.2rem;">Contents</div>
+      <ol style="list-style:none;">
+        <li style="padding:.75rem 0;border-bottom:1px dotted rgba(26,26,26,.2);display:flex;gap:1.2rem;align-items:baseline;"><span style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:#6b6258;flex-shrink:0;">01</span><a href="#f3500-reflection" style="font-size:1.2rem;color:#1a1a1a;text-decoration:none;">Reflection — A Semester in Film Theory</a></li>
+        <li style="padding:.75rem 0;border-bottom:1px dotted rgba(26,26,26,.2);display:flex;gap:1.2rem;align-items:baseline;"><span style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:#6b6258;flex-shrink:0;">02</span><a href="#f3500-presentation" style="font-size:1.2rem;color:#1a1a1a;text-decoration:none;">Process Work I — Black Spectatorship</a></li>
+        <li style="padding:.75rem 0;display:flex;gap:1.2rem;align-items:baseline;"><span style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:#6b6258;flex-shrink:0;">03</span><a href="#f3500-essay" style="font-size:1.2rem;color:#1a1a1a;text-decoration:none;">Process Work II — Theorizing Parasite</a></li>
+      </ol>
+    </nav>
+
+    <!-- Reflection -->
+    <div id="f3500-reflection" style="margin-bottom:7rem;scroll-margin-top:80px;">
+      <span style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8b1e1e;display:block;margin-bottom:.75rem;">§ 01 — Reflection</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);font-weight:400;line-height:1.05;margin-bottom:3rem;">A Semester in <em>Film Theory</em></h2>
+      <div style="font-size:1.1rem;line-height:1.75;">
+        <p style="margin-bottom:1.3em;">When I started FILM 3500, I thought I already knew how to look at movies. I had been editing, shooting, and doing VFX work for years back in Nepal before I came to the U.S. I figured theory would just give me fancier words for things I was already doing on set. I was wrong. What this class actually gave me was a different way of paying attention — a way of watching that keeps asking who a film is built for, who it leaves out, and what the craft itself is saying even when nobody is saying anything out loud.</p>
+        <p style="margin-bottom:1.3em;">The hardest part of the semester for me was the group presentation on Manthia Diawara's "Black Spectatorship." It was hard in two ways. First, the reading itself. Diawara's idea of the "resisting spectator" is that identification in Hollywood is never neutral. Race shapes who gets to step into a film comfortably and who has to push back against it. Reading him next to Mulvey and hooks made me go back and rethink scenes I had loved for years without ever questioning them. Second, the presenting part. Speaking in front of a group is genuinely hard for me. I prepared a lot. I knew the Diawara reading well and I had my notes on the "Gus chase" sequence from <em>Birth of a Nation</em> ready to go. But when the moment came, I started getting anxious and hesitating, and none of that had anything to do with whether I understood the material. I am still working on this. What I took from that week is that being prepared and being able to deliver are two separate skills, and the second one needs its own practice.</p>
+        <p style="margin-bottom:1.3em;">The breakthrough came later, while I was writing Essay 2 on <em>Parasite</em>. I was using John Thornton Caldwell's production culture framework, and somewhere in the middle of drafting, something clicked. <em>Parasite</em> is a film about invisible labor and hidden suffering. But the most important set in the film, the Park family's house, was built from scratch on an empty lot so it would feel like it had always been there. Lee Ha Jun, the production designer, kept that secret until after Cannes. That stopped me. The film's critique of capitalism was produced through the same kind of invisible, below-the-line craft that the film is criticizing. Once I saw that, I couldn't unsee it.</p>
+        <p style="margin-bottom:1.3em;">What I am taking with me from this class, into my own editing and VFX work, is that craft choices are never only technical. The way a space is built, lit, cut, and sounded is always making an argument, whether we mean it to or not. That is the lesson I was not expecting to learn here, and it is the one I think will stay with me the longest.</p>
+      </div>
+    </div>
+
+    <!-- Presentation -->
+    <div id="f3500-presentation" style="margin-bottom:7rem;scroll-margin-top:80px;">
+      <span style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8b1e1e;display:block;margin-bottom:.75rem;">§ 02 — Process Work I</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);font-weight:400;line-height:1.05;margin-bottom:2rem;">Group Presentation on <em>Black Spectatorship</em></h2>
+      <dl style="display:grid;grid-template-columns:auto 1fr;gap:.5rem 2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;margin-bottom:2.5rem;padding:1.5rem;background:rgba(26,26,26,.04);border-left:2px solid #8b1e1e;">
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Week</dt><dd>11 — Theorizing Social Differences</dd>
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Reading</dt><dd>Manthia Diawara, "Black Spectatorship" <em>(Screen, 1988)</em></dd>
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Format</dt><dd>Group presentation with slides</dd>
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Films</dt><dd>Birth of a Nation (1915), The Color Purple (1985), 48 Hours (1982)</dd>
+      </dl>
+      <div style="font-size:1.1rem;line-height:1.75;">
+        <p style="margin-bottom:1.3em;">This group presentation was built around Manthia Diawara's essay on the "resisting spectator." His argument is that Black viewers of classical Hollywood cinema often refuse the identification the film is asking for, because the dominant reading of the text is built on racist assumptions they cannot accept. Our presentation walked through Diawara's reading of the "Gus chase" sequence in D.W. Griffith's <em>Birth of a Nation</em>, and looked at how his argument carries into later films like <em>The Color Purple</em> and <em>48 Hours</em>.</p>
+        <figure style="margin:2.5rem 0;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Birth_of_a_Nation_theatrical_poster.jpg/800px-Birth_of_a_Nation_theatrical_poster.jpg" alt="Birth of a Nation (1915)" loading="lazy" style="width:100%;display:block;filter:grayscale(100%) contrast(1.05);">
+          <figcaption style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#6b6258;margin-top:.75rem;padding-left:.75rem;border-left:2px solid #8b1e1e;">The Birth of a Nation (1915), D.W. Griffith</figcaption>
+        </figure>
+        <p style="margin-bottom:1.3em;">This was the most difficult piece of work I did this semester. The reading asked me to go back and rethink films I had loved without ever questioning them. Working through Diawara gave me a foundation I came back to when writing my final essay.</p>
+        <div style="position:relative;width:100%;padding-bottom:60%;margin:2rem 0;background:#fff;border:1px solid rgba(26,26,26,.15);">
+          <iframe src="https://docs.google.com/presentation/d/1hVee8QsrylAMZOHQus6LD3XhBUPYwj4qPs2uc9Aw-fk/embed?start=false&loop=false&delayms=3000" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:none;"></iframe>
+        </div>
+        <a href="https://docs.google.com/presentation/d/1hVee8QsrylAMZOHQus6LD3XhBUPYwj4qPs2uc9Aw-fk/edit?usp=sharing" target="_blank" rel="noopener" style="font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#8b1e1e;text-decoration:none;border-bottom:1px solid #8b1e1e;padding-bottom:2px;">Open in Google Slides →</a>
+      </div>
+    </div>
+
+    <!-- Essay -->
+    <div id="f3500-essay" style="margin-bottom:4rem;scroll-margin-top:80px;">
+      <span style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#8b1e1e;display:block;margin-bottom:.75rem;">§ 03 — Process Work II</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem);font-weight:400;line-height:1.05;margin-bottom:2rem;">Final Essay — <em>Theorizing Parasite</em></h2>
+      <dl style="display:grid;grid-template-columns:auto 1fr;gap:.5rem 2rem;font-family:'DM Sans',sans-serif;font-size:.82rem;margin-bottom:2.5rem;padding:1.5rem;background:rgba(26,26,26,.04);border-left:2px solid #8b1e1e;">
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Assignment</dt><dd>Essay 2 — Theorizing the Media Object</dd>
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Subject</dt><dd>Bong Joon-ho, <em>Parasite</em> (2019)</dd>
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Frameworks</dt><dd>Production culture theory (Caldwell), auteur theory, transnational cinema</dd>
+        <dt style="color:#6b6258;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem;">Builds From</dt><dd>Essay 1 — Formal Analysis of the same sequence</dd>
+      </dl>
+      <div style="font-size:1.1rem;line-height:1.75;">
+        <p style="margin-bottom:1.3em;">My final essay looks at the basement reveal scene in Bong Joon-ho's <em>Parasite</em> through three frameworks: production culture theory, auteur theory, and transnational cinema. My argument is that <em>Parasite</em> folds its critique of capitalism into the actual conditions of its own making.</p>
+        <figure style="margin:2.5rem 0;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Bong_Joon-ho_%282017%29.jpg/800px-Bong_Joon-ho_%282017%29.jpg" alt="Bong Joon-ho" loading="lazy" style="width:100%;display:block;filter:grayscale(100%) contrast(1.05);">
+          <figcaption style="font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#6b6258;margin-top:.75rem;padding-left:.75rem;border-left:2px solid #8b1e1e;">Bong Joon-ho, writer and director of Parasite (2019)</figcaption>
+        </figure>
+        <p style="margin-bottom:1.3em;">The essay looks at how the Park family's house was built from scratch, how cinematographer Hong Kyung-pyo used large format cameras to make a manufactured space feel permanent, how Bong's recurring use of hidden places ties <em>Parasite</em> back to earlier films, and how the Hallyu wave made it possible for a film this specifically Korean to reach a global audience.</p>
+        <a href="Final_Essay.pdf" target="_blank" rel="noopener" style="font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#8b1e1e;text-decoration:none;border-bottom:1px solid #8b1e1e;padding-bottom:2px;">Read the Essay →</a>
+      </div>
+    </div>
+
+    <!-- Colophon -->
+    <div style="border-top:1px solid #1a1a1a;padding-top:3rem;font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6b6258;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.8rem;">
+      <span>Jivan Chaudhary · FILM 3500 · Spring 2026</span>
+      <span>Weber State University</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function openPortfolio(){
+  const m=document.getElementById('film3500-modal');
+  m.style.display='block';
+  m.scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closePortfolio(){
+  document.getElementById('film3500-modal').style.display='none';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePortfolio();});
+</script>
+
 </body>
 </html>
