@@ -415,54 +415,12 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
 
 /* ── TITLE SWAP ── */
 .hero-title{position:relative;}
-.ht-main{
-  display:block;
-  transition:opacity .5s ease, transform .5s ease;
-}
-.ht-alt{
-  position:absolute;top:0;left:50%;
-  transform:translateX(-50%) translateY(10px);
-  display:block;white-space:nowrap;width:max-content;
-  opacity:0;
-  transition:opacity .5s ease, transform .5s ease;
-  background:linear-gradient(130deg,#ede7dc 30%,#c8a866 80%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.hero-title:hover .ht-main,
-.hero-title.swapped .ht-main{opacity:0;transform:translateY(-10px);}
-.hero-title:hover .ht-alt,
-.hero-title.swapped .ht-alt{opacity:1;transform:translateX(-50%) translateY(0);}
+
 
 /* MOBILE: when swapped reduce eyebrow gap only */
 @media(max-width:900px){
   .hero-title.swapped ~ * { --swapped: 1; }
 }
-/* MOBILE: in-flow so it pushes tagline naturally */
-@media(max-width:900px){
-  .hero-title{ overflow:visible; }
-  .ht-alt{
-    position:relative !important;
-    left:auto !important;
-    top:auto !important;
-    transform:none !important;
-    width:100% !important;
-    white-space:normal !important;
-    text-align:center;
-    max-height:0;
-    overflow:hidden;
-    opacity:0;
-    transition:opacity .5s ease, max-height .5s ease !important;
-  }
-  .hero-title.swapped .ht-alt{
-    max-height:3em;
-    opacity:1;
-    transform:none !important;
-  }
-
-  .hero-title.swapped .ht-main{ opacity:0; transform:translateY(-10px); }
-}
-
-
 
 </style>
 </head>
@@ -502,8 +460,8 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
   <canvas id="cinematic-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow" id="he">Filmmaking  ·  Editing  ·  Visual Effects</p>
-    <h1 class="hero-title" id="ht"><span class="ht-main">Jeon Films</span></h1>
+    <p class="hero-eyebrow" id="he">FILMMAKING · EDITING · VISUAL EFFECTS</p>
+    <h1 class="hero-title" id="ht">Jeon Films</h1>
     <p class="hero-tagline" id="hg">Telling stories that stays.</p>
     <div class="hero-btns" id="hb">
       <a href="#works" class="hbtn"><span>View Works</span></a>
@@ -551,6 +509,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:1.5rem 4vw;display:fle
       <div class="wi" onclick="openLightbox('ZhDrLHuUpyU')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/ZhDrLHuUpyU/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-name">Haveli</p><p class="wi-role">Directing · Cinematography · Editing · VFX</p></div></div>
       <div class="wi" onclick="openLightbox('iT7gGjT8Veo')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/iT7gGjT8Veo/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-name">Eden Streets</p><p class="wi-role">Editing · Cinematography</p></div></div>
       <div class="wi" onclick="openLightbox('q1Uo1DjZ5rw')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/q1Uo1DjZ5rw/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-name">Weaning Ceremony</p><p class="wi-role">Production</p></div></div>
+      <div class="wi" onclick="openLightbox('QQoLYeCi6Vc')" style="cursor:pointer;"><div class="wi-thumb" style="background-image:url('https://img.youtube.com/vi/QQoLYeCi6Vc/hqdefault.jpg');"></div><div class="wi-shade"></div><div class="wi-play"><div class="play-ring"><svg viewBox="0 0 16 16"><polygon points="3,2 14,8 3,14"/></svg></div></div><div class="wi-label"><p class="wi-name">Wedding</p><p class="wi-role">Directing · Cinematography · Editing</p></div></div>
     </div>
     <!-- PERSONAL -->
     <div class="wpanel" id="tab-personal">
@@ -918,64 +877,6 @@ function closeLB(e){
 }
 document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
 
-
-/* ── TITLE SWAP ── */
-window.addEventListener('load', function(){
-  const title = document.getElementById('ht');
-  const tagline = document.getElementById('hg');
-  if(!title) return;
-
-  const alt = document.createElement('span');
-  alt.className = 'ht-alt';
-  alt.textContent = 'Jivan Chaudhary';
-  title.appendChild(alt);
-
-  const hero = document.getElementById('hero');
-  function setSwap(on){
-    const isMobile = window.innerWidth <= 900;
-    const eyebrow = document.getElementById('he');
-    if(on){
-      title.classList.add('swapped');
-      if(isMobile){
-        const content = document.querySelector('.hero-content');
-        if(content){ content.style.transition='margin-top .5s ease'; content.style.marginTop='-12vh'; }
-        if(eyebrow){ eyebrow.style.transition='margin-bottom .5s ease'; eyebrow.style.marginBottom='-1.5rem'; }
-      }
-      if(eyebrow) scrambleText(eyebrow, 'Filmmaker  ·  Editor  ·  VFX Artist', 0);
-    } else {
-      title.classList.remove('swapped');
-      const content2 = document.querySelector('.hero-content');
-      if(content2) content2.style.marginTop = '';
-      if(eyebrow){ eyebrow.style.marginBottom = ''; scrambleText(eyebrow, 'Filmmaking  ·  Editing  ·  Visual Effects', 0); }
-    }
-  }
-
-  title.addEventListener('mouseenter', () => setSwap(true));
-  title.addEventListener('mouseleave', () => { if(window.scrollY <= 80) setSwap(false); });
-  window.addEventListener('scroll', () => setSwap(window.scrollY > 80), {passive:true});
-  window.addEventListener('resize', () => { if(!title.classList.contains('swapped') && tagline) tagline.style.marginTop = ''; });
-});
-
-
-/* ── TEXT SCRAMBLE EFFECT ── */
-function scrambleText(el, newText, delay=0){
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ·';
-  const duration = 600;
-  const steps = 20;
-  let step = 0;
-  setTimeout(() => {
-    const interval = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      el.textContent = newText.split('').map((char, i) => {
-        if(char === ' ' || char === '·') return char;
-        if(i < Math.floor(progress * newText.length)) return newText[i];
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join('');
-      if(step >= steps){ el.textContent = newText; clearInterval(interval); }
-    }, duration / steps);
-  }, delay);
-}
 
 
 </script>
